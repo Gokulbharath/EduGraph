@@ -1,19 +1,21 @@
 import { initializeApp } from 'firebase/app';
 import { getAuth, GoogleAuthProvider, GithubAuthProvider } from 'firebase/auth';
-// Import the functions you need from the SDKs you need
+
 const firebaseConfig = {
-  apiKey: "AIzaSyCyskMRnDG4YJ79EdSeTO2m5_mOCuV38ko",
-  authDomain: "edugraph-63a15.firebaseapp.com",
-  projectId: "edugraph-63a15",
-  storageBucket: "edugraph-63a15.firebasestorage.app",
-  messagingSenderId: "886558642854",
-  appId: "1:886558642854:web:264bb6a443cddc658f5a67",
-  measurementId: "G-NJQHPF28F7"
+  apiKey: "AIzaSyCy12LnfAqqv7DY_E-Atn8ZpwmRPBj0668",
+  authDomain: "edugraph-d4fcf.firebaseapp.com",
+  projectId: "edugraph-d4fcf",
+  storageBucket: "edugraph-d4fcf.firebasestorage.app",
+  messagingSenderId: "647644251684",
+  appId: "1:647644251684:web:69c5889bccb3d6de6e7ab1",
+  measurementId: "G-NGRLTRQW6H"
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+
+// Initialize Firebase Authentication and get a reference to the service
+export const auth = getAuth(app);
 
 // Initialize providers
 export const googleProvider = new GoogleAuthProvider();
