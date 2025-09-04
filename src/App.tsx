@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Brain } from 'lucide-react';
 import LandingPage from './pages/LandingPage';
 import AuthPage from './pages/AuthPage';
 import QuizPage from './pages/QuizPage';
