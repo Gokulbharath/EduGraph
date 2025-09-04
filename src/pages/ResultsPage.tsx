@@ -2,6 +2,7 @@ import React from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { Brain, ArrowRight, Star, TrendingUp, Users, Target } from 'lucide-react';
 import { useQuiz } from '../context/QuizContext';
+import { roadmaps } from '../data/roadmaps';
 
 const careerPaths = [
   {
