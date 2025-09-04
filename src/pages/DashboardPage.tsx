@@ -1,20 +1,10 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Brain, TrendingUp, Target, Clock, Star, BookOpen, Users } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 
 const DashboardPage = () => {
-  const { user, logout } = useAuth();
-  const navigate = useNavigate();
-
-  const handleLogout = async () => {
-    try {
-      await logout();
-      navigate('/');
-    } catch (error) {
-      console.error('Logout error:', error);
-    }
-  };
+  const { user } = useAuth();
 
   if (!user) {
     return (
@@ -39,12 +29,6 @@ const DashboardPage = () => {
             </div>
             <div className="flex items-center space-x-4">
               <span className="text-gray-600">Welcome, {user.name}</span>
-              <button
-                onClick={handleLogout}
-                className="text-gray-600 hover:text-red-600 transition-colors"
-              >
-                Logout
-              </button>
               <Link to="/" className="text-gray-600 hover:text-blue-600 transition-colors">
                 Home
               </Link>
