@@ -1,18 +1,17 @@
-import { initializeApp, getApps, getApp } from 'firebase/app';
+import { initializeApp } from 'firebase/app';
 import { getAuth, GoogleAuthProvider, GithubAuthProvider } from 'firebase/auth';
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCy12LnfAqqv7DY_E-Atn8ZpwmRPBj0668",
-  authDomain: "edugraph-d4fcf.firebaseapp.com",
-  projectId: "edugraph-d4fcf",
-  storageBucket: "edugraph-d4fcf.firebasestorage.app",
-  messagingSenderId: "647644251684",
-  appId: "1:647644251684:web:69c5889bccb3d6de6e7ab1",
-  measurementId: "G-NGRLTRQW6H"
+  apiKey: "your-api-key",
+  authDomain: "your-project.firebaseapp.com",
+  projectId: "your-project-id",
+  storageBucket: "your-project.appspot.com",
+  messagingSenderId: "123456789",
+  appId: "your-app-id"
 };
 
-// Initialize Firebase only if no apps exist
-const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApp();
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
 
 // Initialize Firebase Authentication and get a reference to the service
 export const auth = getAuth(app);
