@@ -4,12 +4,14 @@ interface User {
   id: string;
   name: string;
   email: string;
+  selectedRole?: string;
 }
 
 interface AuthContextType {
   user: User | null;
   login: (email: string, password: string) => Promise<void>;
   signup: (email: string, password: string, name: string) => Promise<void>;
+  updateUserRole: (role: string) => void;
   logout: () => void;
 }
 
@@ -54,6 +56,12 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     });
   };
 
+  const updateUserRole = (role: string) => {
+    if (user) {
+      setUser({ ...user, selectedRole: role });
+    }
+  };
+
   const logout = () => {
     setUser(null);
   };
@@ -62,6 +70,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     user,
     login,
     signup,
+    updateUserRole,
     logout
   };
 

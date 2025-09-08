@@ -1,23 +1,32 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Brain, Map, Users, Target, Star, CheckCircle } from 'lucide-react';
+import { useTheme } from '../context/ThemeContext';
 
 const LandingPage = () => {
+  const { theme, toggleTheme } = useTheme();
+
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors">
       {/* Navigation */}
-      <nav className="fixed top-0 w-full bg-white/80 backdrop-blur-md z-50 border-b border-gray-200">
+      <nav className="fixed top-0 w-full bg-white/80 dark:bg-gray-900/80 backdrop-blur-md z-50 border-b border-gray-200 dark:border-gray-700">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center space-x-2">
-              <Brain className="w-8 h-8 text-blue-600" />
-              <span className="text-xl font-bold text-gray-900">EduGraph</span>
+              <Brain className="w-8 h-8 text-blue-600 dark:text-blue-400" />
+              <span className="text-xl font-bold text-gray-900 dark:text-white">EduGraph</span>
             </div>
             <div className="hidden md:flex items-center space-x-8">
-              <a href="#features" className="text-gray-600 hover:text-blue-600 transition-colors">Features</a>
-              <a href="#how-it-works" className="text-gray-600 hover:text-blue-600 transition-colors">How it Works</a>
-              <a href="#testimonials" className="text-gray-600 hover:text-blue-600 transition-colors">Success Stories</a>
-              <Link to="/auth" className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+              <a href="#features" className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Features</a>
+              <a href="#how-it-works" className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">How it Works</a>
+              <a href="#testimonials" className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Success Stories</a>
+              <button
+                onClick={toggleTheme}
+                className="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+              >
+                {theme === 'light' ? '🌙' : '☀️'}
+              </button>
+              <Link to="/auth" className="bg-blue-600 dark:bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-700 dark:hover:bg-blue-600 transition-colors">
                 Get Started
               </Link>
             </div>
@@ -26,14 +35,14 @@ const LandingPage = () => {
       </nav>
 
       {/* Hero Section */}
-      <section className="pt-20 pb-16 px-4 sm:px-6 lg:px-8">
+      <section className="pt-20 pb-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-slate-50 to-blue-50 dark:from-gray-900 dark:to-gray-800">
         <div className="max-w-7xl mx-auto">
           <div className="text-center">
-            <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
+            <h1 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6">
               Google Maps for 
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-teal-600"> Your Career</span>
             </h1>
-            <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-xl text-gray-600 dark:text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed">
               Discover your ideal career path through AI-powered assessments, personalized roadmaps, 
               and expert guidance. Turn confusion into clarity with data-driven career insights.
             </p>
@@ -45,7 +54,7 @@ const LandingPage = () => {
                 <span>Start Your Journey</span>
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Link>
-              <button className="text-blue-600 px-8 py-4 rounded-lg text-lg font-semibold border-2 border-blue-600 hover:bg-blue-600 hover:text-white transition-all duration-300">
+              <button className="text-blue-600 dark:text-blue-400 px-8 py-4 rounded-lg text-lg font-semibold border-2 border-blue-600 dark:border-blue-400 hover:bg-blue-600 dark:hover:bg-blue-500 hover:text-white transition-all duration-300">
                 Watch Demo
               </button>
             </div>
@@ -54,20 +63,20 @@ const LandingPage = () => {
       </section>
 
       {/* Stats Section */}
-      <section className="py-16 bg-white/50">
+      <section className="py-16 bg-white/50 dark:bg-gray-800/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
             <div className="p-6">
               <div className="text-3xl font-bold text-blue-600 mb-2">84%</div>
-              <div className="text-gray-600">of students feel lost about their career direction</div>
+              <div className="text-gray-600 dark:text-gray-300">of students feel lost about their career direction</div>
             </div>
             <div className="p-6">
               <div className="text-3xl font-bold text-teal-600 mb-2">67%</div>
-              <div className="text-gray-600">change careers due to poor initial choices</div>
+              <div className="text-gray-600 dark:text-gray-300">change careers due to poor initial choices</div>
             </div>
             <div className="p-6">
               <div className="text-3xl font-bold text-orange-600 mb-2">95%</div>
-              <div className="text-gray-600">of our users find their ideal path</div>
+              <div className="text-gray-600 dark:text-gray-300">of our users find their ideal path</div>
             </div>
           </div>
         </div>
@@ -77,21 +86,21 @@ const LandingPage = () => {
       <section id="features" className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
               Everything You Need to Navigate Your Career
             </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
               Our platform combines AI technology with career expertise to provide personalized guidance
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 border border-gray-100">
-              <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-6">
-                <Brain className="w-6 h-6 text-blue-600" />
+            <div className="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 border border-gray-100 dark:border-gray-700">
+              <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900 rounded-lg flex items-center justify-center mb-6">
+                <Brain className="w-6 h-6 text-blue-600 dark:text-blue-400" />
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">AI Career Quiz</h3>
-              <p className="text-gray-600">
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">AI Career Quiz</h3>
+              <p className="text-gray-600 dark:text-gray-300">
                 Take our scientifically-designed assessment to discover your natural strengths and career preferences
               </p>
             </div>

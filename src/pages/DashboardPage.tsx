@@ -9,6 +9,7 @@ import { useAuth } from '../context/AuthContext';
 import { useTheme } from '../context/ThemeContext';
 import { useProgress } from '../context/ProgressContext';
 import Certificate from '../components/Certificate';
+import OverallCertificate from '../components/OverallCertificate';
 
 const DashboardPage = () => {
   const { user } = useAuth();
@@ -32,6 +33,9 @@ const DashboardPage = () => {
   const totalProgress = courseProgress.reduce((sum, cp) => sum + cp.progress, 0) / totalCourses;
   const totalLearningTime = Math.floor(totalProgress * 2.5); // Estimate based on progress
   const userCertificates = getUserCertificates();
+
+  // Check if user qualifies for overall certificate (75% overall progress)
+  const qualifiesForOverallCertificate = totalProgress >= 75;
 
   const handleProgressUpdate = (courseId: string, courseName: string, newProgress: number) => {
     updateCourseProgress(courseId, courseName, newProgress);
@@ -355,9 +359,30 @@ const DashboardPage = () => {
 
         {activeTab === 'certificates' && (
           <div className="space-y-6">
+            {/* Overall Certificate */}
+            {qualifiesForOverallCertificate && user?.selectedRole && (
+              <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-8 border border-gray-200 dark:border-gray-700">
+                <div className="flex items-center justify-between mb-6">
+                  <h2 className="text-xl font-bold text-gray-900 dark:text-white">Career Completion Certificate</h2>
+                  <div className="flex items-center space-x-2 text-sm text-green-600 dark:text-green-400">
+                    <Award className="w-4 h-4" />
+                    <span>Qualified for Overall Certificate</span>
+                  </div>
+                </div>
+                
+                <OverallCertificate
+                  studentName={user.name}
+                  selectedRole={user.selectedRole}
+                  completionDate={new Date()}
+                  overallProgress={Math.round(totalProgress)}
+                />
+              </div>
+            )}
+
+            {/* Individual Course Certificates */}
             <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-8 border border-gray-200 dark:border-gray-700">
               <div className="flex items-center justify-between mb-6">
-                <h2 className="text-xl font-bold text-gray-900 dark:text-white">Your Certificates</h2>
+                <h2 className="text-xl font-bold text-gray-900 dark:text-white">Course Certificates</h2>
                 <div className="flex items-center space-x-2 text-sm text-gray-600 dark:text-gray-400">
                   <Award className="w-4 h-4" />
                   <span>{userCertificates.length} certificates earned</span>

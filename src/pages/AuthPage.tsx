@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Brain, ArrowLeft, Mail, Lock, User } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
+import { useTheme } from '../context/ThemeContext';
 
 const AuthPage = () => {
+  const { theme } = useTheme();
   const [isLogin, setIsLogin] = useState(true);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -31,25 +33,25 @@ const AuthPage = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 dark:from-gray-900 dark:to-gray-800 flex items-center justify-center px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full space-y-8">
         {/* Header */}
         <div className="text-center">
-          <Link to="/" className="inline-flex items-center text-blue-600 hover:text-blue-700 mb-6">
+          <Link to="/" className="inline-flex items-center text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 mb-6">
             <ArrowLeft className="w-4 h-4 mr-2" />
             Back to Home
           </Link>
           
           <div className="flex justify-center mb-6">
-            <div className="w-16 h-16 bg-blue-600 rounded-xl flex items-center justify-center">
+            <div className="w-16 h-16 bg-blue-600 dark:bg-blue-500 rounded-xl flex items-center justify-center">
               <Brain className="w-8 h-8 text-white" />
             </div>
           </div>
           
-          <h2 className="text-3xl font-bold text-gray-900 mb-2">
+          <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
             {isLogin ? 'Welcome Back' : 'Join EduGraph'}
           </h2>
-          <p className="text-gray-600">
+          <p className="text-gray-600 dark:text-gray-300">
             {isLogin ? 'Sign in to continue your career journey' : 'Start your personalized career discovery'}
           </p>
         </div>
@@ -71,7 +73,7 @@ const AuthPage = () => {
                     required={!isLogin}
                     value={name}
                     onChange={(e) => setName(e.target.value)}
-                    className="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="block w-full pl-10 pr-3 py-3 border border-gray-300 dark:border-gray-600 rounded-lg placeholder-gray-500 dark:placeholder-gray-400 text-gray-900 dark:text-white bg-white dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     placeholder="Full Name"
                   />
                 </div>
@@ -120,7 +122,7 @@ const AuthPage = () => {
           <button
             type="submit"
             disabled={loading}
-            className="group relative w-full flex justify-center py-3 px-4 border border-transparent text-lg font-medium rounded-lg text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+            className="group relative w-full flex justify-center py-3 px-4 border border-transparent text-lg font-medium rounded-lg text-white bg-blue-600 dark:bg-blue-500 hover:bg-blue-700 dark:hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
           >
             {loading ? 'Please wait...' : (isLogin ? 'Sign In' : 'Create Account')}
           </button>
@@ -129,7 +131,7 @@ const AuthPage = () => {
             <button
               type="button"
               onClick={() => setIsLogin(!isLogin)}
-              className="text-blue-600 hover:text-blue-700 font-medium"
+              className="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-medium"
             >
               {isLogin ? "Don't have an account? Sign up" : "Already have an account? Sign in"}
             </button>
