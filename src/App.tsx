@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { ThemeProvider } from './context/ThemeContext';
+import { ProgressProvider } from './context/ProgressContext';
 import LandingPage from './pages/LandingPage';
 import AuthPage from './pages/AuthPage';
 import QuizPage from './pages/QuizPage';
@@ -11,22 +13,26 @@ import { QuizProvider } from './context/QuizContext';
 
 function App() {
   return (
-    <AuthProvider>
-      <QuizProvider>
-        <Router>
-          <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
-            <Routes>
-              <Route path="/" element={<LandingPage />} />
-              <Route path="/auth" element={<AuthPage />} />
-              <Route path="/quiz" element={<QuizPage />} />
-              <Route path="/results" element={<ResultsPage />} />
-              <Route path="/roadmap/:careerId" element={<RoadmapPage />} />
-              <Route path="/dashboard" element={<DashboardPage />} />
-            </Routes>
-          </div>
-        </Router>
-      </QuizProvider>
-    </AuthProvider>
+    <ThemeProvider>
+      <ProgressProvider>
+        <AuthProvider>
+          <QuizProvider>
+            <Router>
+              <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 dark:from-gray-900 dark:to-gray-800 transition-colors">
+                <Routes>
+                  <Route path="/" element={<LandingPage />} />
+                  <Route path="/auth" element={<AuthPage />} />
+                  <Route path="/quiz" element={<QuizPage />} />
+                  <Route path="/results" element={<ResultsPage />} />
+                  <Route path="/roadmap/:careerId" element={<RoadmapPage />} />
+                  <Route path="/dashboard" element={<DashboardPage />} />
+                </Routes>
+              </div>
+            </Router>
+          </QuizProvider>
+        </AuthProvider>
+      </ProgressProvider>
+    </ThemeProvider>
   );
 }
 
