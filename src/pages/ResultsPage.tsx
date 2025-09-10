@@ -50,7 +50,7 @@ const ResultsPage = () => {
 
   const handleSelectCareer = (careerId: string, careerTitle: string) => {
     updateUserRole(careerTitle);
-    navigate(`/roadmap/${careerId}`);
+    navigate('/home');
   };
 
   if (!quizResults) {

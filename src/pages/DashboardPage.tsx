@@ -60,7 +60,7 @@ const DashboardPage = () => {
               </button>
               <span className="text-gray-600 dark:text-gray-300">Welcome, {user.name}</span>
               <Link to="/" className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
-                Home
+                Back to Home
               </Link>
             </div>
           </div>
@@ -371,8 +371,6 @@ const DashboardPage = () => {
                 </div>
                 
                 <OverallCertificate
-                  studentName={user.name}
-                  selectedRole={user.selectedRole}
                   completionDate={new Date()}
                   overallProgress={Math.round(totalProgress)}
                 />
@@ -396,7 +394,6 @@ const DashboardPage = () => {
                       key={certificate.id}
                       id={certificate.id}
                       courseName={certificate.courseName}
-                      studentName={certificate.studentName}
                       issuedAt={certificate.issuedAt}
                       progress={certificate.progress}
                     />

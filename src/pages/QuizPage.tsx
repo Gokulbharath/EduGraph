@@ -111,7 +111,7 @@ const QuizPage = () => {
     } else {
       // Quiz complete
       saveQuizResults(answers);
-      navigate('/results');
+      navigate('/home');
     }
   };
 

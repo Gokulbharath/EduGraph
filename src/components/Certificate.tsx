@@ -1,10 +1,10 @@
 import React from 'react';
 import { Award, Calendar, User, Star } from 'lucide-react';
+import { useAuth } from '../context/AuthContext';
 
 interface CertificateProps {
   id: string;
   courseName: string;
-  studentName: string;
   issuedAt: Date;
   progress: number;
 }
@@ -12,10 +12,12 @@ interface CertificateProps {
 const Certificate: React.FC<CertificateProps> = ({
   id,
   courseName,
-  studentName,
   issuedAt,
   progress
 }) => {
+  const { user } = useAuth();
+  const studentName = user?.name || 'Student';
+
   const handleDownload = () => {
     // Create a canvas element for the certificate
     const canvas = document.createElement('canvas');

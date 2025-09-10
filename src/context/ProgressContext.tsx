@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, ReactNode } from 'react';
+import { useAuth } from './AuthContext';
 
 interface CourseProgress {
   courseId: string;
@@ -13,7 +14,6 @@ interface Certificate {
   courseId: string;
   courseName: string;
   issuedAt: Date;
-  studentName: string;
   progress: number;
 }
 
@@ -40,6 +40,7 @@ interface ProgressProviderProps {
 }
 
 export const ProgressProvider: React.FC<ProgressProviderProps> = ({ children }) => {
+  const { user } = useAuth();
   const [courseProgress, setCourseProgress] = useState<CourseProgress[]>([
     { courseId: 'html-css', courseName: 'HTML & CSS Fundamentals', progress: 100, completedAt: new Date('2024-12-15'), certificateIssued: true },
     { courseId: 'javascript', courseName: 'JavaScript Fundamentals', progress: 85, completedAt: new Date('2024-12-20'), certificateIssued: true },
@@ -55,7 +56,6 @@ export const ProgressProvider: React.FC<ProgressProviderProps> = ({ children }) 
       courseId: 'html-css',
       courseName: 'HTML & CSS Fundamentals',
       issuedAt: new Date('2024-12-15'),
-      studentName: 'John Doe',
       progress: 100
     },
     {
@@ -63,7 +63,6 @@ export const ProgressProvider: React.FC<ProgressProviderProps> = ({ children }) 
       courseId: 'javascript',
       courseName: 'JavaScript Fundamentals',
       issuedAt: new Date('2024-12-20'),
-      studentName: 'John Doe',
       progress: 85
     },
     {
@@ -71,7 +70,6 @@ export const ProgressProvider: React.FC<ProgressProviderProps> = ({ children }) 
       courseId: 'git',
       courseName: 'Git & Version Control',
       issuedAt: new Date('2024-12-10'),
-      studentName: 'John Doe',
       progress: 90
     }
   ]);
@@ -100,7 +98,6 @@ export const ProgressProvider: React.FC<ProgressProviderProps> = ({ children }) 
             courseId,
             courseName,
             issuedAt: new Date(),
-            studentName: 'John Doe', // This would come from auth context
             progress: newProgress
           };
           setCertificates(prevCerts => [...prevCerts, newCertificate]);
@@ -123,7 +120,6 @@ export const ProgressProvider: React.FC<ProgressProviderProps> = ({ children }) 
             courseId,
             courseName,
             issuedAt: new Date(),
-            studentName: 'John Doe',
             progress: newProgress
           };
           setCertificates(prevCerts => [...prevCerts, newCertificate]);
