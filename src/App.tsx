@@ -14,9 +14,9 @@ import { QuizProvider } from './context/QuizContext';
 
 function App() {
   return (
-    <ThemeProvider>
-      <ProgressProvider>
-        <AuthProvider>
+    <AuthProvider>
+      <ThemeProvider>
+        <ProgressProvider>
           <QuizProvider>
             <Router>
               <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 dark:from-gray-900 dark:to-gray-800 transition-colors">
@@ -32,9 +32,9 @@ function App() {
               </div>
             </Router>
           </QuizProvider>
-        </AuthProvider>
-      </ProgressProvider>
-    </ThemeProvider>
+        </ProgressProvider>
+      </ThemeProvider>
+    </AuthProvider>
   );
 }
 
