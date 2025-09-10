@@ -8,6 +8,7 @@ import QuizPage from './pages/QuizPage';
 import ResultsPage from './pages/ResultsPage';
 import RoadmapPage from './pages/RoadmapPage';
 import DashboardPage from './pages/DashboardPage';
+import HomePage from './pages/HomePage';
 import { AuthProvider } from './context/AuthContext';
 import { QuizProvider } from './context/QuizContext';
 
@@ -24,6 +25,7 @@ function App() {
                   <Route path="/auth" element={<AuthPage />} />
                   <Route path="/quiz" element={<QuizPage />} />
                   <Route path="/results" element={<ResultsPage />} />
+                  <Route path="/home" element={<HomePage />} />
                   <Route path="/roadmap/:careerId" element={<RoadmapPage />} />
                   <Route path="/dashboard" element={<DashboardPage />} />
                 </Routes>
